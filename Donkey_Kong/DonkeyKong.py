@@ -4,6 +4,7 @@ import mcpi.minecraftstuff as minecraftstuff
 import time
 
 mc = minecraft.Minecraft.create()
+pos = mc.player.getTilePos()
 
 #define constants
 BOARD_ROWS = 3
@@ -62,4 +63,4 @@ def checkWin():
             mc.postToChat("Congratulations! You reached the treasured and beat level" + level)
 
 
-buildBoard("Level 1",)
+buildBoard("lEVEL 1",pos.x+1, pos.y, pos.z+1)
