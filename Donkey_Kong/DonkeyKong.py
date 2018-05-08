@@ -69,5 +69,16 @@ def Level_1():
     while not done:
         checkWin()
 
+def Level_2():
+    clearArea(radius)
+    buildBoard("lEVEL 2",pos.x+1, pos.y, pos.z+1)
+    while not done:
+        checkWin()
+
+def Level_3():
+    clearArea(radius)
+    buildBoard("lEVEL 3",pos.x+1, pos.y, pos.z+1)
+    while not done:
+        checkWin()
 
 Level_1()
