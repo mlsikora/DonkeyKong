@@ -18,6 +18,7 @@ level = 1
 numLives = 3
 radius = 40
 score = 0
+done = False
 timer = 60
 
 #define functions
@@ -60,7 +61,13 @@ def checkWin():
     for e in events:
         pos = e.pos
         if block.DIAMOND_BLOCK.data == mc.getBlockWithData(pos).data:
-            mc.postToChat("Congratulations! You reached the treasured and beat level" + level)
+            mc.postToChat("Congratulations! You reached the treasured and beat the level")
+
+def Level_1():
+    clearArea(radius)
+    buildBoard("lEVEL 1",pos.x+1, pos.y, pos.z+1)
+    while not done:
+        checkWin()
 
 
-buildBoard("lEVEL 1",pos.x+1, pos.y, pos.z+1)
+Level_1()
