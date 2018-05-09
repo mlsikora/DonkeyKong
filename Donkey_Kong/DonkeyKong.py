@@ -15,11 +15,13 @@ BOARD_LENGTH = 15
 
 #define variables
 level = 1
-numLives = 3
+lives = 3
 radius = 40
 score = 0
 done = False
 timer = 60
+
+buildLevel = ["lEVEL 1", "Level 2", "lEVEL 3"]
 
 #define functions
 def clearArea(radius):
@@ -57,14 +59,22 @@ def buildBoard(filename, originx, originy, originz):
                 mc.setBlock(originx + x, originy + y, originz + z, blockid)
 
 def checkWin():
+    global level
     events = mc.events.pollBlockHits()
     for e in events:
         pos = e.pos
         if block.DIAMOND_BLOCK.data == mc.getBlockWithData(pos).data:
             mc.postToChat("Congratulations! You reached the treasured and beat the level")
+            level = level + 1
+
+def inWater():
+    if block.WATER.data == mc.getBlockWithData(pos).data:
+        mc.player.setTilePos()
 
 def Level_1():
+    global startPos
     clearArea(radius)
+    startPos = mc.player.getTilePos()
     buildBoard("lEVEL 1",pos.x+1, pos.y, pos.z+1)
     while not done:
         checkWin()
@@ -81,4 +91,19 @@ def Level_3():
     while not done:
         checkWin()
 
-Level_1()
+def buildBoard():
+    global done
+    clearArea(radius)
+    if level == 1:
+        buildBoard(buildLevel[0], pos.x+1, pos.y, pos.z+1)
+    elif level == 2:
+        buildBoard(buildLevel[1], pos.x + 1, pos.y, pos.z + 1)
+    elif level == 3:
+        buildBoard(buildLevel[0], pos.x + 1, pos.y, pos.z + 1)
+
+
+if lives > 0:
+    buildBoard()
+    while not done:
+        checkWin()
+        inWater()
