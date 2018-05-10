@@ -18,6 +18,7 @@ level = 1
 lives = 3
 radius = 40
 score = 0
+startPos = pos
 done = False
 timer = 60
 
@@ -60,39 +61,22 @@ def buildBoard(filename, originx, originy, originz):
 
 def checkWin():
     global level
+    global done
     events = mc.events.pollBlockHits()
     for e in events:
         pos = e.pos
-        if block.DIAMOND_BLOCK.data == mc.getBlockWithData(pos).data:
+        if block.DIAMOND_BLOCK.id == mc.getBlockWithData(pos).id:
             mc.postToChat("Congratulations! You reached the treasured and beat the level")
             level = level + 1
+            done = True
 
 def inWater():
-    if block.WATER.data == mc.getBlockWithData(pos).data:
-        mc.player.setTilePos()
+    if block.WATER.id == mc.getBlockWithData(mc.player.getTilePos()).id:
+        mc.player.setTilePos(startPos)
 
-def Level_1():
-    global startPos
-    clearArea(radius)
-    startPos = mc.player.getTilePos()
-    buildBoard("lEVEL 1",pos.x+1, pos.y, pos.z+1)
-    while not done:
-        checkWin()
-
-def Level_2():
-    clearArea(radius)
-    buildBoard("lEVEL 2",pos.x+1, pos.y, pos.z+1)
-    while not done:
-        checkWin()
-
-def Level_3():
-    clearArea(radius)
-    buildBoard("lEVEL 3",pos.x+1, pos.y, pos.z+1)
-    while not done:
-        checkWin()
-
-def buildBoard():
+def setBoard():
     global done
+    done = False
     clearArea(radius)
     if level == 1:
         buildBoard(buildLevel[0], pos.x+1, pos.y, pos.z+1)
@@ -102,8 +86,9 @@ def buildBoard():
         buildBoard(buildLevel[0], pos.x + 1, pos.y, pos.z + 1)
 
 
-if lives > 0:
-    buildBoard()
+while lives > 0:
+    setBoard()
     while not done:
         checkWin()
         inWater()
+
