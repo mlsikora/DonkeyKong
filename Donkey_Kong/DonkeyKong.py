@@ -22,7 +22,7 @@ startPos = pos
 done = False
 timer = 60
 
-buildLevel = ["lEVEL 1", "Level 2", "lEVEL 3"]
+buildLevel = ["lEVEL 1", "Level 2", "level 3"]
 
 #define functions
 def clearArea(radius):
@@ -71,7 +71,7 @@ def checkWin():
             done = True
 
 def inWater():
-    if block.WATER.id == mc.getBlockWithData(mc.player.getTilePos()).id:
+    if block.WATER_STATIONARY.id == mc.getBlockWithData(mc.player.getTilePos()).id:
         mc.player.setTilePos(startPos)
 
 def setBoard():
