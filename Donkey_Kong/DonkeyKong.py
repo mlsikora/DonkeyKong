@@ -19,6 +19,8 @@ lives = 3
 radius = 40
 score = 0
 startPos = pos
+finished = False
+position = []
 done = False
 timer = 60
 
@@ -99,9 +101,9 @@ def setReplay():
 
 def replayDecision():
     global done
-    global bootyFound
-    global empty_blocks
-    global PlayerValue
+    global finished
+    global lives
+    global level
     global position
     events = mc.events.pollBlockHits()
     for e in events:
@@ -112,10 +114,9 @@ def replayDecision():
                     position = []
                     mc.postToChat("Play")
                     done = False
-                    empty_blocks = Num_Cols * Num_Rows
-                    PlayerValue = [[0, 0, 0],
-                                   [0, 0, 0],
-                                   [0, 0, 0]]
+                    lives = 3
+                    level = 1
+                    finished = False
                     game()
                 elif  block.RED_WOOL.data == mc.getBlockWithData(pos).data:
                     mc.postToChat("Don't Play Again")
@@ -140,26 +141,34 @@ def setBoard():
         
 def youLost():
     global done
-    if lives == 0 or timer ==0:
+    if lives == 0 or timer == 0:
         mc.postToChat("YOU LOST, PUTTING YOU AT THE START")
         replayFinal()
+
 def replayFinal():
+    global finished
     if level == 4:
         clearArea(50)
+        finished = True
         mc.player.setTilePos(startPos)
-        while done == True:
+        setReplay()
+        while finished:
             time.sleep(2)
             mc.postToChat("Do you want to play again")
+            replayDecision()
 
 def BarrelRoll():
     while lives > 0:
         mc.setBlock()
 
-while lives > 0:
-    setBoard()
-    while not done:
-        setTimer()
-        checkWin()
-        inWater()
-        replayFinal()
-        youLost()
+def game():
+    while lives > 0:
+        setBoard()
+        while not done:
+            setTimer()
+            checkWin()
+            inWater()
+            replayFinal()
+            youLost()
+
+game()
