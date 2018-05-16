@@ -74,7 +74,10 @@ def inWater():
         lives= lives-1
         if lives > 1:
             mc.postToChat("YOU HAVE " + str(lives) + " LIVES REMAINING")
-        elif lives
+        elif lives == 1 or lives == 0:
+            mc.postToChat("YOU HAVE " + str(lives) + " LIFE REMAINING")
+
+
 
 def setTimer():
     global timer
