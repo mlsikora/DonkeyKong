@@ -81,10 +81,16 @@ def inWater():
 
 def setTimer():
     global timer
-    if done == False:
+    global done
+    if timer > 0:
         time.sleep(1)
         timer = timer - 1
         mc.postToChat("timer = " + str(timer))
+    elif timer == 0:
+        mc.postToChat("YOU LOST, PUTTING YOU AT THE START")
+
+
+
 
 
 def setReplay():
@@ -141,7 +147,6 @@ def setBoard():
 def youLost():
     global done
     if lives == 0 or timer ==0:
-        mc.postToChat("YOU LOST, PUTTING YOU AT THE START")
         replayFinal()
 def replayFinal():
     if level == 4:
