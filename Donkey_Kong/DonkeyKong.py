@@ -105,9 +105,7 @@ def setReplay():
 
 def replayDecision():
     global done
-    global bootyFound
-    global empty_blocks
-    global PlayerValue
+    global finshed
     global position
     events = mc.events.pollBlockHits()
     for e in events:
@@ -118,10 +116,7 @@ def replayDecision():
                     position = []
                     mc.postToChat("Play")
                     done = False
-                    empty_blocks = Num_Cols * Num_Rows
-                    PlayerValue = [[0, 0, 0],
-                                   [0, 0, 0],
-                                   [0, 0, 0]]
+                    finshed = False
                     game()
                 elif  block.RED_WOOL.data == mc.getBlockWithData(pos).data:
                     mc.postToChat("Don't Play Again")
