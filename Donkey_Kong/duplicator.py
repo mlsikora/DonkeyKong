@@ -6,9 +6,9 @@ import random
 
 mc = minecraft.Minecraft.create()
 
-SIZEX = 13
-SIZEY = 13
-SIZEZ = 9
+SIZEX = 20
+SIZEY = 20
+SIZEZ = 10
 roomx = 1
 roomy = 1
 roomz = 1
@@ -21,7 +21,7 @@ def buildRoom(x, y, z):
     roomz = z
 
     mc.setBlocks(roomx, roomy, roomz, roomx+SIZEX+2, roomy+SIZEY+2, roomz+SIZEZ+2, block.GLASS.id)
-    mc.setBlocks(roomx+1, roomy+1, roomz, roomx+SIZEX+1, roomy+SIZEY+1, roomz+SIZEZ+1, block.AIR.id)
+
 
 
 def demolishRoom():

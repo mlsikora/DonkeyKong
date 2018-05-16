@@ -22,8 +22,6 @@ startPos = pos
 done = False
 timer = 60
 
-buildLevel = ["lEVEL 1", "Level 2", "level 3"]
-
 #define functions
 def clearArea(radius):
     position = mc.player.getTilePos()
@@ -47,7 +45,6 @@ def buildBoard(filename, originx, originy, originz):
     lineidx = 1
 
     for y in range(sizey):
-        mc.postToChat("print:" + str(y))
         lineidx = lineidx + 1
 
         for x in range(sizex):
@@ -71,8 +68,20 @@ def checkWin():
             done = True
 
 def inWater():
+    global lives
     if block.WATER_STATIONARY.id == mc.getBlockWithData(mc.player.getTilePos()).id:
         mc.player.setTilePos(startPos)
+        lives= lives-1
+        if lives > 1:
+            mc.postToChat("YOU HAVE " + str(lives) + " LIVES REMAINING")
+        elif lives
+
+def setTimer():
+    global timer
+    if done == False:
+        time.sleep(1)
+        timer = timer - 1
+        mc.postToChat("timer = " + str(timer))
 
 
 def setReplay():
@@ -112,19 +121,41 @@ def replayDecision():
 
 def setBoard():
     global done
+    global timer
     done = False
     clearArea(radius)
     if level == 1:
-        buildBoard(buildLevel[0], pos.x+1, pos.y, pos.z+1)
+        buildBoard("lEVEL 1", pos.x+1, pos.y, pos.z+1)
     elif level == 2:
-        buildBoard(buildLevel[1], pos.x + 1, pos.y, pos.z + 1)
+        timer = 90
+        mc.player.setTilePos(startPos)
+        buildBoard("Level 2(V2)", pos.x + 1, pos.y, pos.z + 1)
     elif level == 3:
-        buildBoard(buildLevel[0], pos.x + 1, pos.y, pos.z + 1)
+        timer = 120
+        mc.player.setTilePos(startPos)
+        buildBoard("Level 3(V2)", pos.x + 1, pos.y, pos.z + 1)
+def youLost():
+    global done
+    if lives == 0 or timer ==0:
+        mc.postToChat("YOU LOST, PUTTING YOU AT THE START")
+        replayFinal()
+def replayFinal():
+    if level == 4:
+        clearArea(50)
+        mc.player.setTilePos(startPos)
+        while done == True:
+            time.sleep(2)
+            mc.postToChat("Do you want to play again")
 
+def BarrelRoll():
+    while lives > 0:
+        mc.setBlock()
 
 while lives > 0:
     setBoard()
     while not done:
+        setTimer()
         checkWin()
         inWater()
-
+        replayFinal()
+        youLost()
