@@ -74,6 +74,42 @@ def inWater():
     if block.WATER_STATIONARY.id == mc.getBlockWithData(mc.player.getTilePos()).id:
         mc.player.setTilePos(startPos)
 
+
+def setReplay():
+    global position
+    pos = mc.player.getTilePos()
+    replay = [pos.x + 1, pos.y, pos.z]
+    gameOver = [pos.x - 1, pos.y, pos.z]
+    mc.setBlock(replay, block.GREEN_WOOL)
+    mc.setBlock(gameOver, block.RED_WOOL)
+    position.append(replay)
+    position.append(gameOver)
+
+def replayDecision():
+    global done
+    global bootyFound
+    global empty_blocks
+    global PlayerValue
+    global position
+    events = mc.events.pollBlockHits()
+    for e in events:
+        pos = e.pos
+        while len(position) > 0:
+            for choice in position:
+                if block.GREEN_WOOL.data == mc.getBlockWithData(pos).data:
+                    position = []
+                    mc.postToChat("Play")
+                    done = False
+                    empty_blocks = Num_Cols * Num_Rows
+                    PlayerValue = [[0, 0, 0],
+                                   [0, 0, 0],
+                                   [0, 0, 0]]
+                    game()
+                elif  block.RED_WOOL.data == mc.getBlockWithData(pos).data:
+                    mc.postToChat("Don't Play Again")
+                    clearArea(radius)
+                    quit()
+
 def setBoard():
     global done
     done = False
