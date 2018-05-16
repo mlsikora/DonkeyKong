@@ -137,6 +137,7 @@ def setBoard():
         timer = 120
         mc.player.setTilePos(startPos)
         buildBoard("Level 3(V2)", pos.x + 1, pos.y, pos.z + 1)
+        
 def youLost():
     global done
     if lives == 0 or timer ==0:
