@@ -74,9 +74,9 @@ def inWater():
     if block.WATER_STATIONARY.id == mc.getBlockWithData(mc.player.getTilePos()).id:
         mc.player.setTilePos(startPos)
         lives= lives-1
-        if lives > 1:
+        if lives > 1 or lives == 0:
             mc.postToChat("YOU HAVE " + str(lives) + " LIVES REMAINING")
-        elif lives == 1 or lives == 0:
+        elif lives == 1:
             mc.postToChat("YOU HAVE " + str(lives) + " LIFE REMAINING")
 
 
@@ -90,10 +90,6 @@ def setTimer():
         mc.postToChat("timer = " + str(timer))
     elif timer == 0:
         mc.postToChat("YOU LOST, PUTTING YOU AT THE START")
-
-
-
-
 
 def setReplay():
     global position
@@ -110,6 +106,7 @@ def replayDecision():
     global finished
     global level
     global lives
+    global timer
     global position
     events = mc.events.pollBlockHits()
     for e in events:
@@ -121,6 +118,7 @@ def replayDecision():
                     mc.postToChat("Play")
                     level = 1
                     lives = 3
+                    timer = 60
                     done = False
                     finished = False
                     game()
@@ -145,15 +143,9 @@ def setBoard():
         mc.player.setTilePos(startPos)
         buildBoard("Level 3(V2)", pos.x + 1, pos.y, pos.z + 1)
 
-def youLost():
-    global done
-    if lives == 0 or timer ==0:
-        replayFinal()
-
 def replayFinal():
     global finished
-    if level == 4:
-        clearArea(50)
+    if level == 4 or lives == 0 or timer == 0:
         finished = True
         mc.player.setTilePos(startPos)
         setReplay()
@@ -173,6 +165,5 @@ def game():
             checkWin()
             inWater()
             replayFinal()
-            youLost()
 
 game()
