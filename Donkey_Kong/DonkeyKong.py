@@ -25,6 +25,14 @@ done = False
 timer = 60
 
 #define functions
+def instructions():
+    mc.postToChat("type /gamemode 1. Next press E on keyboard and select a sword from inventory")
+    time.sleep(6)
+    mc.postToChat("type /gamemode 2. Jump up the structures and hit the diamond block at the top to complete the level.")
+    time.sleep(6)
+    mc.postToChat("You have 3 lives to complete all 3 levels. Do not fall in the water, do not switch gamemode, do not let timer run out.")
+    time.sleep(6)
+
 def clearArea(radius):
     position = mc.player.getTilePos()
     mc.setBlocks(position.x - radius,
@@ -148,6 +156,7 @@ def replayFinal():
     if level == 4 or lives == 0 or timer == 0:
         finished = True
         mc.player.setTilePos(startPos)
+        clearArea(radius)
         setReplay()
         mc.postToChat("Do you want to play again")
         while finished:
@@ -158,6 +167,7 @@ def BarrelRoll():
         mc.setBlock()
 
 def game():
+    instructions()
     while lives > 0:
         setBoard()
         while not done:
