@@ -18,6 +18,8 @@ BOARD_LENGTH = 15
 level = 1
 lives = 3
 L1_Offset = [10, 10, 6]
+L2_Offset = [2, 16, 6]
+L3_Offset = [20, 19, 8]
 radius = 40
 finished = False
 position = []
@@ -165,8 +167,12 @@ def replayFinal():
             replayDecision()
 
 def BarrelRoll():
-    mc.setBlock(startPos.x + L1_Offset[0], startPos.y + L1_Offset[1], startPos.z + L1_Offset[2], block.SANDSTONE.id)
-
+    if level == 1:
+        mc.setBlock(startPos.x + L1_Offset[0], startPos.y + L1_Offset[1], startPos.z + L1_Offset[2], block.SANDSTONE_SLAB.id)
+    if level == 2:
+        mc.setBlock(startPos.x + L2_Offset[0], startPos.y + L2_Offset[1], startPos.z + L2_Offset[2], block.SANDSTONE_SLAB.id)
+    if level == 3:
+        mc.setBlock(startPos.x + L3_Offset[0], startPos.y + L3_Offset[1], startPos.z + L3_Offset[2], block.SANDSTONE_SLAB.id)
 def game():
     instructions()
     while lives > 0:
