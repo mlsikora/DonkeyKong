@@ -153,7 +153,7 @@ def setBoard():
 
 def replayFinal():
     global finished
-    if level == 4 or lives == 0 or timer == 0:
+    if level == 4 or lives == 0 or timer ==0:
         finished = True
         mc.player.setTilePos(startPos)
         clearArea(radius)
