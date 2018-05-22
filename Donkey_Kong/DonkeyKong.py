@@ -1,6 +1,7 @@
 import mcpi.minecraft as minecraft
 import mcpi.block as block
 import mcpi.minecraftstuff as minecraftstuff
+from mcpi.vec3 import Vec3
 import time
 
 mc = minecraft.Minecraft.create()
@@ -16,6 +17,7 @@ BOARD_LENGTH = 15
 #define variables
 level = 1
 lives = 3
+L1_Offset = [10, 10, 6]
 radius = 40
 finished = False
 position = []
@@ -163,8 +165,7 @@ def replayFinal():
             replayDecision()
 
 def BarrelRoll():
-    while lives > 0:
-        mc.setBlock()
+    mc.setBlock(startPos.x + L1_Offset[0], startPos.y + L1_Offset[1], startPos.z + L1_Offset[2], block.SANDSTONE.id)
 
 def game():
     instructions()
@@ -172,6 +173,7 @@ def game():
         setBoard()
         while not done:
             setTimer()
+            BarrelRoll()
             checkWin()
             inWater()
             replayFinal()
