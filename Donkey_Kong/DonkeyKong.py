@@ -2,6 +2,7 @@ import mcpi.minecraft as minecraft
 import mcpi.block as block
 import mcpi.minecraftstuff as minecraftstuff
 from mcpi.vec3 import Vec3
+import _thread
 import time
 
 mc = minecraft.Minecraft.create()
@@ -17,6 +18,8 @@ BOARD_LENGTH = 15
 #define variables
 level = 1
 lives = 3
+wait = 1
+pause = 2
 L1_Offset = [10, 10, 6]
 L2_Offset = [2, 16, 6]
 L3_Offset = [20, 19, 8]
@@ -31,11 +34,11 @@ timer = 60
 #define functions
 def instructions():
     mc.postToChat("type /gamemode 1. Next press E on keyboard and select a sword from inventory")
-    time.sleep(6)
+    time.sleep(wait)
     mc.postToChat("type /gamemode 2. Jump up the structures and hit the diamond block at the top to complete the level.")
-    time.sleep(6)
+    time.sleep(wait)
     mc.postToChat("You have 3 lives to complete all 3 levels. Do not fall in the water, do not switch gamemode, do not let timer run out.")
-    time.sleep(6)
+    time.sleep(wait)
 
 def clearArea(radius):
     position = mc.player.getTilePos()
@@ -168,8 +171,30 @@ def replayFinal():
 
 def BarrelRoll():
     if level == 1:
-        mc.setBlock(startPos.x + L1_Offset[0], startPos.y + L1_Offset[1], startPos.z + L1_Offset[2], block.SANDSTONE_SLAB.id)
-        blocksBetween
+        sandPos = Vec3(startPos.x + L1_Offset[0], startPos.y + L1_Offset[1], startPos.z + L1_Offset[2])
+        sandBlock = [minecraftstuff.ShapeBlock(0, 0, 0, block.SANDSTONE_SLAB.id)]
+        barrel = minecraftstuff.MinecraftShape(mc, sandPos, sandBlock)
+        for n in range(0,2):
+            for n in range(1, 7):
+                time.sleep(pause)
+                barrel.moveBy(-1, 0, 0)
+            for n in range(0, 2):
+                time.sleep(pause)
+                barrel.moveBy(-1, -1, 0)
+            for n in range(0, 1):
+                time.sleep(pause)
+                barrel.moveBy(0, 0, -1)
+            for n in range(0, 6):
+                time.sleep(pause)
+                barrel.moveBy(1, 0, 0)
+            for n in range(0, 2):
+                time.sleep(pause)
+                barrel.moveBy(1, -1, 0)
+            for n in range(0, 1):
+                time.sleep(pause)
+                barrel.moveBy(0, 0, -1)
+
+
     if level == 2:
         mc.setBlock(startPos.x + L2_Offset[0], startPos.y + L2_Offset[1], startPos.z + L2_Offset[2], block.SANDSTONE_SLAB.id)
     if level == 3:
@@ -179,7 +204,7 @@ def game():
         setBoard()
         while not done:
             setTimer()
-            BarrelRoll()
+            _thread.start_new_thread(BarrelRoll, ())
             checkWin()
             inWater()
             replayFinal()
