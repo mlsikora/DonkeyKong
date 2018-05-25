@@ -169,7 +169,6 @@ def replayFinal():
 def BarrelRoll():
     if level == 1:
         mc.setBlock(startPos.x + L1_Offset[0], startPos.y + L1_Offset[1], startPos.z + L1_Offset[2], block.SANDSTONE_SLAB.id)
-        blocksBetween
     if level == 2:
         mc.setBlock(startPos.x + L2_Offset[0], startPos.y + L2_Offset[1], startPos.z + L2_Offset[2], block.SANDSTONE_SLAB.id)
     if level == 3:
