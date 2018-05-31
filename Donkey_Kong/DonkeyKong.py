@@ -105,7 +105,6 @@ def setTimer():
         mc.postToChat("timer = " + str(timer))
     if timer == 0:
         mc.postToChat("YOU LOST, PUTTING YOU AT THE START")
-        replayFinal()
 
 def setReplay():
     global position
@@ -206,7 +205,6 @@ def game():
         _thread.start_new_thread(setTimer, ())
         while not done:
             checkWin()
-
             inWater()
             replayFinal()
 instructions()
