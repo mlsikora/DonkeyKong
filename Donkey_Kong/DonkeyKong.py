@@ -86,7 +86,7 @@ def checkWin():
 
 def inWater():
     global lives
-    if block.WATER_STATIONARY.id == mc.getBlockWithData(mc.player.getTilePos()).id:
+    if (block.WATER_STATIONARY.id == mc.getBlockWithData(mc.player.getTilePos()).id) or (block.SANDSTONE_SLAB.id == mc.getBlockWithData(mc.player.getTilePos()).id):
         mc.player.setTilePos(startPos)
         lives= lives-1
         if lives > 1 or lives == 0:
@@ -170,45 +170,40 @@ def replayFinal():
             replayDecision()
 
 def BarrelRoll():
-    if level == 1:
-<<<<<<< HEAD
-        mc.setBlock(startPos.x + L1_Offset[0], startPos.y + L1_Offset[1], startPos.z + L1_Offset[2], block.SANDSTONE_SLAB.id)
-=======
-        sandPos = Vec3(startPos.x + L1_Offset[0], startPos.y + L1_Offset[1], startPos.z + L1_Offset[2])
-        sandBlock = [minecraftstuff.ShapeBlock(0, 0, 0, block.SANDSTONE_SLAB.id)]
-        barrel = minecraftstuff.MinecraftShape(mc, sandPos, sandBlock)
-        for n in range(0,2):
-            for n in range(1, 7):
-                time.sleep(pause)
-                barrel.moveBy(-1, 0, 0)
-            for n in range(0, 2):
-                time.sleep(pause)
-                barrel.moveBy(-1, -1, 0)
-            for n in range(0, 1):
-                time.sleep(pause)
-                barrel.moveBy(0, 0, -1)
-            for n in range(0, 6):
-                time.sleep(pause)
-                barrel.moveBy(1, 0, 0)
-            for n in range(0, 2):
-                time.sleep(pause)
-                barrel.moveBy(1, -1, 0)
-            for n in range(0, 1):
-                time.sleep(pause)
-                barrel.moveBy(0, 0, -1)
-
-
->>>>>>> 9d7bad9fdc87b3857e5b523759794695c5bda7ae
-    if level == 2:
-        mc.setBlock(startPos.x + L2_Offset[0], startPos.y + L2_Offset[1], startPos.z + L2_Offset[2], block.SANDSTONE_SLAB.id)
-    if level == 3:
-        mc.setBlock(startPos.x + L3_Offset[0], startPos.y + L3_Offset[1], startPos.z + L3_Offset[2], block.SANDSTONE_SLAB.id)
+        if level == 1:
+            mc.setBlock(startPos.x + L1_Offset[0], startPos.y + L1_Offset[1], startPos.z + L1_Offset[2], block.SANDSTONE_SLAB.id)
+            sandPos = Vec3(startPos.x + L1_Offset[0], startPos.y + L1_Offset[1], startPos.z + L1_Offset[2])
+            sandBlock = [minecraftstuff.ShapeBlock(0, 0, 0, block.SANDSTONE_SLAB.id)]
+            barrel = minecraftstuff.MinecraftShape(mc, sandPos, sandBlock)
+            for n in range(0,2):
+                for n in range(1, 7):
+                    time.sleep(pause)
+                    barrel.moveBy(-1, 0, 0)
+                for n in range(0, 2):
+                    time.sleep(pause)
+                    barrel.moveBy(-1, -1, 0)
+                for n in range(0, 1):
+                    time.sleep(pause)
+                    barrel.moveBy(0, 0, -1)
+                for n in range(0, 6):
+                    time.sleep(pause)
+                    barrel.moveBy(1, 0, 0)
+                for n in range(0, 2):
+                    time.sleep(pause)
+                    barrel.moveBy(1, -1, 0)
+                for n in range(0, 1):
+                    time.sleep(pause)
+                    barrel.moveBy(0, 0, -1)
+def rolldat():
+    for n in range(0, 6):
+        _thread.start_new_thread(BarrelRoll, ())
+        time.sleep(10)
 def game():
     while lives > 0:
         setBoard()
+        _thread.start_new_thread(rolldat, ())
         while not done:
             setTimer()
-            _thread.start_new_thread(BarrelRoll, ())
             checkWin()
             inWater()
             replayFinal()
