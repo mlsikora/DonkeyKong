@@ -177,23 +177,66 @@ def BarrelRoll():
             barrel = minecraftstuff.MinecraftShape(mc, sandPos, sandBlock)
             for n in range(0,2):
                 for n in range(1, 7):
-                    time.sleep(pause)
-                    barrel.moveBy(-1, 0, 0)
+                    if level == 1:
+                        time.sleep(pause)
+                        barrel.moveBy(-1, 0, 0)
                 for n in range(0, 2):
-                    time.sleep(pause)
-                    barrel.moveBy(-1, -1, 0)
+                    if level == 1:
+                        time.sleep(pause)
+                        barrel.moveBy(-1, -1, 0)
                 for n in range(0, 1):
-                    time.sleep(pause)
-                    barrel.moveBy(0, 0, -1)
+                    if level == 1:
+                        time.sleep(pause)
+                        barrel.moveBy(0, 0, -1)
                 for n in range(0, 6):
-                    time.sleep(pause)
-                    barrel.moveBy(1, 0, 0)
+                    if level == 1:
+                        time.sleep(pause)
+                        barrel.moveBy(1, 0, 0)
                 for n in range(0, 2):
-                    time.sleep(pause)
-                    barrel.moveBy(1, -1, 0)
+                    if level == 1:
+                        time.sleep(pause)
+                        barrel.moveBy(1, -1, 0)
                 for n in range(0, 1):
+                    if level == 1:
+                        time.sleep(pause)
+                        barrel.moveBy(0, 0, -1)
+
+        if level == 2:
+            mc.setBlock(startPos.x + L2_Offset[0], startPos.y + L2_Offset[1], startPos.z + L2_Offset[2],
+                        block.SANDSTONE_SLAB.id)
+            sandPos = Vec3(startPos.x + L2_Offset[0], startPos.y + L2_Offset[1], startPos.z + L2_Offset[2])
+            sandBlock = [minecraftstuff.ShapeBlock(0, 0, 0, block.SANDSTONE_SLAB.id)]
+            barrel = minecraftstuff.MinecraftShape(mc, sandPos, sandBlock)
+            for n in range (0,2):
+                for n in range (0,12):
+                    if level == 2:
+                        time.sleep(pause)
+                        barrel.moveBy(1, 0, 0)
+                for n in range(0, 3):
+                    if level == 2:
+                        time.sleep(pause)
+                        barrel.moveBy(1, -1, 0)
+                for n in range(0,1):
+                    if level == 2:
+                        time.sleep(pause)
+                        barrel.moveBy(0, 0, -1)
+                for n in range(0, 12):
+                    if level == 2:
+                        time.sleep(pause)
+                        barrel.moveBy(-1,0,0)
+                for n in range(0, 3):
+                    if level == 2:
+                        time.sleep(pause)
+                        barrel.moveBy(-1, -1, 0)
+                for n in range(0,1):
+                    if level == 2:
+                        time.sleep(pause)
+                        barrel.moveBy(0, 0, -1)
+            for n in range(0,12):
+                if level == 2:
                     time.sleep(pause)
-                    barrel.moveBy(0, 0, -1)
+                    barrel.moveBy(1,0,0)
+
 def rolldat():
     for n in range(0, 6):
         _thread.start_new_thread(BarrelRoll, ())
