@@ -99,12 +99,13 @@ def inWater():
 def setTimer():
     global timer
     global done
-    if timer > 0:
+    while timer > 0:
         time.sleep(1)
         timer = timer - 1
         mc.postToChat("timer = " + str(timer))
-    elif timer == 0:
+    if timer == 0:
         mc.postToChat("YOU LOST, PUTTING YOU AT THE START")
+        replayFinal()
 
 def setReplay():
     global position
@@ -202,9 +203,10 @@ def game():
     while lives > 0:
         setBoard()
         _thread.start_new_thread(rolldat, ())
+        _thread.start_new_thread(setTimer, ())
         while not done:
-            setTimer()
             checkWin()
+
             inWater()
             replayFinal()
 instructions()
