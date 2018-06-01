@@ -86,9 +86,16 @@ def checkWin():
 
 def inWater():
     global lives
+    global timer
     if (block.WATER_STATIONARY.id == mc.getBlockWithData(mc.player.getTilePos()).id) or (block.SANDSTONE_SLAB.id == mc.getBlockWithData(mc.player.getTilePos()).id):
         mc.player.setTilePos(startPos)
         lives= lives-1
+        if level== 1:
+            timer = 60
+        elif level == 2:
+            timer = 120
+        elif level == 3:
+            timer = 150
         if lives > 1 or lives == 0:
             mc.postToChat("YOU HAVE " + str(lives) + " LIVES REMAINING")
         elif lives == 1:
