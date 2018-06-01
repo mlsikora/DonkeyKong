@@ -157,11 +157,11 @@ def setBoard():
     if level == 1:
         buildBoard("lEVEL 1", pos.x+1, pos.y, pos.z+1)
     elif level == 2:
-        timer = 90
+        timer = 120
         mc.player.setTilePos(startPos)
         buildBoard("Level 2(V2)", pos.x + 1, pos.y, pos.z + 1)
     elif level == 3:
-        timer = 120
+        timer = 180
         mc.player.setTilePos(startPos)
         buildBoard("Level 3(V2)", pos.x + 1, pos.y, pos.z + 1)
 
