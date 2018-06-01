@@ -271,9 +271,15 @@ def BarrelRoll():
                     mc.setBlock(barrel.position, block.AIR.id)
 
 def rolldat():
-    for n in range(0, 6):
-        _thread.start_new_thread(BarrelRoll, ())
-        time.sleep(10)
+    while level == 1:
+        for n in range(0, 6):
+            _thread.start_new_thread(BarrelRoll, ())
+            time.sleep(10)
+    while level == 2:
+        for n in range(0, 6):
+            _thread.start_new_thread(BarrelRoll, ())
+            time.sleep(20)
+
 def game():
     while lives > 0:
         setBoard()
