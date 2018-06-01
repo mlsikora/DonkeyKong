@@ -187,26 +187,38 @@ def BarrelRoll():
                     if level == 1:
                         time.sleep(pause)
                         barrel.moveBy(-1, 0, 0)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
                 for n in range(0, 2):
                     if level == 1:
                         time.sleep(pause)
                         barrel.moveBy(-1, -1, 0)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
                 for n in range(0, 1):
                     if level == 1:
                         time.sleep(pause)
                         barrel.moveBy(0, 0, -1)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
                 for n in range(0, 6):
                     if level == 1:
                         time.sleep(pause)
                         barrel.moveBy(1, 0, 0)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
                 for n in range(0, 2):
                     if level == 1:
                         time.sleep(pause)
                         barrel.moveBy(1, -1, 0)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
                 for n in range(0, 1):
                     if level == 1:
                         time.sleep(pause)
                         barrel.moveBy(0, 0, -1)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
 
         if level == 2:
             mc.setBlock(startPos.x + L2_Offset[0], startPos.y + L2_Offset[1], startPos.z + L2_Offset[2],
@@ -219,30 +231,44 @@ def BarrelRoll():
                     if level == 2:
                         time.sleep(pause)
                         barrel.moveBy(1, 0, 0)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
                 for n in range(0, 3):
                     if level == 2:
                         time.sleep(pause)
                         barrel.moveBy(1, -1, 0)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
                 for n in range(0,1):
                     if level == 2:
                         time.sleep(pause)
                         barrel.moveBy(0, 0, -1)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
                 for n in range(0, 12):
                     if level == 2:
                         time.sleep(pause)
                         barrel.moveBy(-1,0,0)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
                 for n in range(0, 3):
                     if level == 2:
                         time.sleep(pause)
                         barrel.moveBy(-1, -1, 0)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
                 for n in range(0,1):
                     if level == 2:
                         time.sleep(pause)
                         barrel.moveBy(0, 0, -1)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
             for n in range(0,12):
                 if level == 2:
                     time.sleep(pause)
                     barrel.moveBy(1,0,0)
+                else:
+                    mc.setBlock(barrel.position, block.AIR.id)
 
 def rolldat():
     for n in range(0, 6):
