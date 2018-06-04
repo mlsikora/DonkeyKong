@@ -106,7 +106,7 @@ def inWater():
 def setTimer():
     global timer
     global done
-    while timer > 0:
+    while timer > 0 and finished == False:
         time.sleep(1)
         timer = timer - 1
         mc.postToChat("timer = " + str(timer))
