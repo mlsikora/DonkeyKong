@@ -269,6 +269,150 @@ def BarrelRoll():
                     barrel.moveBy(1,0,0)
                 else:
                     mc.setBlock(barrel.position, block.AIR.id)
+        if level == 3:
+            mc.setBlock(startPos.x + L3_Offset[0], startPos.y + L3_Offset[1], startPos.z + L3_Offset[2],
+                        block.SANDSTONE_SLAB.id)
+            sandPos = Vec3(startPos.x + L3_Offset[0], startPos.y + L3_Offset[1], startPos.z + L3_Offset[2])
+            sandBlock = [minecraftstuff.ShapeBlock(0, 0, 0, block.SANDSTONE_SLAB.id)]
+            barrel = minecraftstuff.MinecraftShape(mc, sandPos, sandBlock)
+            for n in range(0,1):
+                for n in range(0,15):
+                    if level == 3:
+                        time.sleep(pause)
+                        barrel.moveBy(-1, 0, 0)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
+                for n in range(0,3):
+                    if level == 3:
+                        time.sleep(pause)
+                        barrel.moveBy(-1, -1, 0)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
+                for n in range(0,1):
+                    if level == 3:
+                        time.sleep(pause)
+                        barrel.moveBy(0, 0, -1)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
+                for n in range(0,15):
+                    if level == 3:
+                        time.sleep(pause)
+                        barrel.moveBy(1, 0, 0)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
+                for n in range(0,3):
+                    if level == 3:
+                        time.sleep(pause)
+                        barrel.moveBy(1, -1, 0)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
+                for n in range(0,1):
+                    if level == 3:
+                        time.sleep(pause)
+                        barrel.moveBy(0, 0, -1)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
+
+
+                for n in range(0,10):
+                    if level == 3:
+                        time.sleep(pause)
+                        barrel.moveBy(-1, 0, 0)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
+                for n in range(0,1):
+                    if level == 3:
+                        time.sleep(pause)
+                        barrel.moveBy(-1, 1, 0)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
+                for n in range(0,1):
+                    if level == 3:
+                        time.sleep(pause)
+                        barrel.moveBy(-1, 0, 0)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
+                for n in range(0,1):
+                    if level == 3:
+                        time.sleep(pause)
+                        barrel.moveBy(-1, -1, 0)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
+                for n in range(0,2):
+                    if level == 3:
+                        time.sleep(pause)
+                        barrel.moveBy(-1, 0, 0)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
+                for n in range(0,3):
+                    if level == 3:
+                        time.sleep(pause)
+                        barrel.moveBy(-1, -1, 0)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
+                for n in range(0,1):
+                    if level == 3:
+                        time.sleep(pause)
+                        barrel.moveBy(0, 0, -1)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
+                for n in range(0,15):
+                    if level == 3:
+                        time.sleep(pause)
+                        barrel.moveBy(1, 0, 0)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
+                for n in range(0,3):
+                    if level == 3:
+                        time.sleep(pause)
+                        barrel.moveBy(1, -1, 0)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
+                for n in range(0,1):
+                    if level == 3:
+                        time.sleep(pause)
+                        barrel.moveBy(0, 0, -1)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
+                for n in range(0,12):
+                    if level == 3:
+                        time.sleep(pause)
+                        barrel.moveBy(-1, 0, 0)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
+                for n in range(0,1):
+                    if level == 3:
+                        time.sleep(pause)
+                        barrel.moveBy(-1, 1, 0)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
+                for n in range(0,1):
+                    if level == 3:
+                        time.sleep(pause)
+                        barrel.moveBy(-1, 0, 0)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
+                for n in range(0,4):
+                    if level == 3:
+                        time.sleep(pause)
+                        barrel.moveBy(-1, -1, 0)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
+                for n in range(0,1):
+                    if level == 3:
+                        time.sleep(pause)
+                        barrel.moveBy(0, 0, -1)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
+                for n in range(0,16):
+                    if level == 3:
+                        time.sleep(pause)
+                        barrel.moveBy(1, 0, 0)
+                    else:
+                        mc.setBlock(barrel.position, block.AIR.id)
+                for n in range(0,1):
+                    if level == 3:
+                        mc.setBlock(barrel.position, block.AIR.id)
 
 def rolldat():
     while level == 1:
