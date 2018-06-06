@@ -83,6 +83,8 @@ def checkWin():
             mc.postToChat("Congratulations! You reached the treasured and beat the level")
             level = level + 1
             done = True
+            time.sleep(1)
+
 
 def inWater():
     global lives
@@ -105,13 +107,14 @@ def inWater():
 
 def setTimer():
     global timer
-    global done
-    while timer > 0 and finished == False:
-        time.sleep(1)
-        timer = timer - 1
-        mc.postToChat("timer = " + str(timer))
-    if timer == 0:
-        mc.postToChat("YOU LOST, PUTTING YOU AT THE START")
+    while not done:
+        if timer > 0 and finished == False:
+            time.sleep(1)
+            timer = timer - 1
+            mc.postToChat("timer = " + str(timer))
+        elif timer == 0:
+            mc.postToChat("YOU LOST, PUTTING YOU AT THE START")
+
 
 def setReplay():
     global position
@@ -415,14 +418,10 @@ def BarrelRoll():
                         mc.setBlock(barrel.position, block.AIR.id)
 
 def rolldat():
-    while level == 1:
-        for n in range(0, 6):
-            _thread.start_new_thread(BarrelRoll, ())
-            time.sleep(10)
-    while level == 2:
-        for n in range(0, 6):
-            _thread.start_new_thread(BarrelRoll, ())
-            time.sleep(20)
+     while not done:
+        _thread.start_new_thread(BarrelRoll, ())
+        time.sleep(10)
+
 
 def game():
     while lives > 0:
