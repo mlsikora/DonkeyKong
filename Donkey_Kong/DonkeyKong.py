@@ -419,13 +419,16 @@ def BarrelRoll():
 
 def rolldat():
      while not done:
-        _thread.start_new_thread(BarrelRoll, ())
-        time.sleep(10)
+         if not done:
+            _thread.start_new_thread(BarrelRoll, ())
+            time.sleep(10)
+         else:
+            _thread.exit_thread()
 
 
 def game():
-    while lives > 0:
         setBoard()
+    while lives > 0:
         _thread.start_new_thread(rolldat, ())
         _thread.start_new_thread(setTimer, ())
         while not done:
