@@ -426,7 +426,12 @@ def rolldat():
     global complete
     while not complete:
         _thread.start_new_thread(BarrelRoll, ())
-        time.sleep(10)
+        if level == 1:
+            time.sleep(10)
+        elif level == 2:
+            time.sleep(18)
+        elif level == 3:
+            time.sleep(22)
     complete = False
     _thread.exit_thread()
 
