@@ -19,7 +19,9 @@ BOARD_LENGTH = 15
 level = 1
 lives = 3
 wait = 1
+complete = False
 pause = 2
+threads = []
 L1_Offset = [10, 10, 6]
 L2_Offset = [2, 16, 6]
 L3_Offset = [20, 19, 8]
@@ -76,6 +78,7 @@ def buildBoard(filename, originx, originy, originz):
 def checkWin():
     global level
     global done
+    global complete
     events = mc.events.pollBlockHits()
     for e in events:
         pos = e.pos
@@ -83,6 +86,7 @@ def checkWin():
             mc.postToChat("Congratulations! You reached the treasured and beat the level")
             level = level + 1
             done = True
+            complete = True
             time.sleep(1)
 
 
@@ -418,11 +422,13 @@ def BarrelRoll():
                         mc.setBlock(barrel.position, block.AIR.id)
 
 def rolldat():
-    while not done:
+    global threads
+    global complete
+    while not complete:
         _thread.start_new_thread(BarrelRoll, ())
-        time.sleep(10)d
+        time.sleep(10)
+    complete = False
     _thread.exit_thread()
-
 
 def game():
     while lives > 0:
@@ -433,5 +439,6 @@ def game():
             checkWin()
             inWater()
             replayFinal()
+
 instructions()
 game()
