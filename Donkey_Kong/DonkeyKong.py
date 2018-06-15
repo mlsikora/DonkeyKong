@@ -422,7 +422,6 @@ def BarrelRoll():
                         mc.setBlock(barrel.position, block.AIR.id)
 
 def rolldat():
-    global threads
     global complete
     while not complete:
         _thread.start_new_thread(BarrelRoll, ())
@@ -438,8 +437,7 @@ def rolldat():
 def game():
     while lives > 0:
         setBoard()
-        _thread.start_new_thread(rolldat, ())
-        _thread.start_new_thread(setTimer, ())
+       _thread.start_new_thread(setTimer, ())
         while not done:
             checkWin()
             inWater()
