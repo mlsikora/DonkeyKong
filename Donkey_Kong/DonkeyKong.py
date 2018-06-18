@@ -421,6 +421,7 @@ def BarrelRoll():
                     if level == 3:
                         mc.setBlock(barrel.position, block.AIR.id)
 
+#creates new threads for each new barrel roll
 def rolldat():
     global threads
     global complete
@@ -435,6 +436,7 @@ def rolldat():
     complete = False
     _thread.exit_thread()
 
+#game loop without instructions. Has functions like checking if player is in water etc.
 def game():
     while lives > 0:
         setBoard()
@@ -445,5 +447,6 @@ def game():
             inWater()
             replayFinal()
 
+#Main game loop. Made in tis format for replay functionality, by putting the main game loop as a function.
 instructions()
 game()
