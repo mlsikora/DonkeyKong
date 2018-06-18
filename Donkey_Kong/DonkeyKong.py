@@ -34,7 +34,8 @@ done = False
 timer = 60
 
 #define functions
-def instructions():
+
+def instructions():  #displays instructions before game begins
     mc.postToChat("type /gamemode 1. Next press E on keyboard and select a sword from inventory")
     time.sleep(wait)
     mc.postToChat("type /gamemode 2. Jump up the structures and hit the diamond block at the top to complete the level.")
@@ -42,7 +43,7 @@ def instructions():
     mc.postToChat("You have 3 lives to complete all 3 levels. Do not fall in the water, do not switch gamemode, do not let timer run out.")
     time.sleep(wait)
 
-def clearArea(radius):
+def clearArea(radius):  #clears area around player
     position = mc.player.getTilePos()
     mc.setBlocks(position.x - radius,
                  position.y,
@@ -52,7 +53,7 @@ def clearArea(radius):
                  position.z + radius,
                  block.AIR)
 
-def buildBoard(filename, originx, originy, originz):
+def buildBoard(filename, originx, originy, originz): #builds the board from csv file
     f = open(filename, "r")
     lines = f.readlines()
 
@@ -75,7 +76,7 @@ def buildBoard(filename, originx, originy, originz):
                 blockid = int(data[z])
                 mc.setBlock(originx + x, originy + y, originz + z, blockid)
 
-def checkWin():
+def checkWin():   #checks to see if the player hits diamond block at top of board and wins
     global level
     global done
     global complete
@@ -90,7 +91,7 @@ def checkWin():
             time.sleep(1)
 
 
-def inWater():
+def inWater():   #checks to see if player fell off board into the water
     global lives
     global timer
     if (block.WATER_STATIONARY.id == mc.getBlockWithData(mc.player.getTilePos()).id) or (block.SANDSTONE_SLAB.id == mc.getBlockWithData(mc.player.getTilePos()).id):
@@ -109,7 +110,7 @@ def inWater():
 
 
 
-def setTimer():
+def setTimer():   #sets timer up. If timer hits 0 player loses
     global timer
     while not done:
         if timer > 0 and finished == False:
@@ -120,7 +121,7 @@ def setTimer():
             mc.postToChat("YOU LOST, PUTTING YOU AT THE START")
 
 
-def setReplay():
+def setReplay():  #sets up the replay blocks
     global position
     pos = mc.player.getTilePos()
     replay = [pos.x + 1, pos.y, pos.z]
@@ -130,7 +131,7 @@ def setReplay():
     position.append(replay)
     position.append(gameOver)
 
-def replayDecision():
+def replayDecision():  #waits till player makes a replay choice
     global done
     global finished
     global level
@@ -156,7 +157,7 @@ def replayDecision():
                     clearArea(radius)
                     quit()
 
-def setBoard():
+def setBoard():   #sets the board depending on what level player is on
     global done
     global timer
     done = False
