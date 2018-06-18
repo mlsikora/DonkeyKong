@@ -173,7 +173,7 @@ def setBoard():   #sets the board depending on what level player is on
         mc.player.setTilePos(startPos)
         buildBoard("Level 3(V2)", pos.x + 1, pos.y, pos.z + 1)
 
-def replayFinal():
+def replayFinal():  #runs replay setup and then decision and clears board
     global finished
     if level == 4 or lives == 0 or timer ==0:
         finished = True
@@ -184,7 +184,7 @@ def replayFinal():
         while finished:
             replayDecision()
 
-def BarrelRoll():
+def BarrelRoll():  #gives the path for barrels to roll down on each levels board
         if level == 1:
             mc.setBlock(startPos.x + L1_Offset[0], startPos.y + L1_Offset[1], startPos.z + L1_Offset[2], block.SANDSTONE_SLAB.id)
             sandPos = Vec3(startPos.x + L1_Offset[0], startPos.y + L1_Offset[1], startPos.z + L1_Offset[2])
